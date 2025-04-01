@@ -22,56 +22,57 @@ app.secret_key = "secret hehe"
 # Landing Page
 @app.route('/', methods = ['GET', 'POST'])
 def landing():
-    return a;
+    return redirect(url_for('homepage'))
 
 #----------------------------------------------------------------------------------------------------------------
 
 # Home Page
 @app.route('/homepage', methods = ['GET', 'POST'])
 def homepage():
-    return a;
+    return render_template("homepage.html")
 
 #----------------------------------------------------------------------------------------------------------------
 
 # Login
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
-    return a;
+    return render_template("login.html")
 
 #----------------------------------------------------------------------------------------------------------------
 
 # Logout
 @app.route('/logout', methods = ['GET', 'POST'])
 def logout():
-    return a;
+    session.pop('username', None)
+    return redirect(url_for('homepage'))
 
 #----------------------------------------------------------------------------------------------------------------
 
 # Favorites
 @app.route('/fav', methods = ['GET', 'POST'])
 def fav():
-    return a;
+    return a
 
 #----------------------------------------------------------------------------------------------------------------
 
 # Search/Filter
 @app.route('/search', methods = ['GET', 'POST'])
 def search():
-    return a;
+    return a
 
 #----------------------------------------------------------------------------------------------------------------
 
 # Map
 @app.route('/map', methods = ['GET', 'POST'])
 def map():
-    return a;
+    return a
 
 #----------------------------------------------------------------------------------------------------------------
 
 # Infomation
 @app.route('/info', methods = ['GET', 'POST'])
 def info():
-    return a;
+    return a
 
 #----------------------------------------------------------------------------------------------------------------
 
