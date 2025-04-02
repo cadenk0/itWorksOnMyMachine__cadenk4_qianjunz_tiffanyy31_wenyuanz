@@ -27,6 +27,8 @@ def landing():
 # Home Page
 @app.route('/homepage', methods = ['GET', 'POST'])
 def homepage():
+    if 'username' in session:
+        return render_template("homepage.html", logged_in = True, username = session['username'])
     return render_template("homepage.html")
 
 #----------------------------------------------------------------------------------------------------------------
@@ -34,7 +36,19 @@ def homepage():
 # Login
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
+    if 'username' in session:
+        return redirect(url_for('homepage'))
+    if request.method == 'POST':
+        #input checking for username
+        return redirect(url_for('homepage'))
     return render_template("login.html")
+
+#----------------------------------------------------------------------------------------------------------------
+
+# Sign Up
+@app.route('/signup', methods = ['GET', 'POST'])
+def signup():
+    return render_template("signup.html")
 
 #----------------------------------------------------------------------------------------------------------------
 
@@ -49,28 +63,28 @@ def logout():
 # Favorites
 @app.route('/fav', methods = ['GET', 'POST'])
 def fav():
-    return render_template("homepage.html")
+    return render_template("favorites.html")
 
 #----------------------------------------------------------------------------------------------------------------
 
 # Search/Filter
 @app.route('/search', methods = ['GET', 'POST'])
 def search():
-    return render_template("homepage.html")
+    return render_template("search.html")
 
 #----------------------------------------------------------------------------------------------------------------
 
 # Map
 @app.route('/map', methods = ['GET', 'POST'])
 def map():
-    return render_template("homepage.html")
+    return render_template("map.html")
 
 #----------------------------------------------------------------------------------------------------------------
 
 # Infomation
 @app.route('/info', methods = ['GET', 'POST'])
 def info():
-    return render_template("homepage.html")
+    return render_template("info.html")
 
 #----------------------------------------------------------------------------------------------------------------
 
