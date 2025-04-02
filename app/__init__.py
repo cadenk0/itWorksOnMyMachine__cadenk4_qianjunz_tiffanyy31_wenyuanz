@@ -9,9 +9,7 @@ import random
 import uuid
 import json
 import re
-from CustomModules import api_modules, db_modules
 
-db_modules.create_database()
 
 app = Flask(__name__)
 app.secret_key = "secret hehe"
@@ -51,28 +49,28 @@ def logout():
 # Favorites
 @app.route('/fav', methods = ['GET', 'POST'])
 def fav():
-    return a
+    return render_template("homepage.html")
 
 #----------------------------------------------------------------------------------------------------------------
 
 # Search/Filter
 @app.route('/search', methods = ['GET', 'POST'])
 def search():
-    return a
+    return render_template("homepage.html")
 
 #----------------------------------------------------------------------------------------------------------------
 
 # Map
 @app.route('/map', methods = ['GET', 'POST'])
 def map():
-    return a
+    return render_template("homepage.html")
 
 #----------------------------------------------------------------------------------------------------------------
 
 # Infomation
 @app.route('/info', methods = ['GET', 'POST'])
 def info():
-    return a
+    return render_template("homepage.html")
 
 #----------------------------------------------------------------------------------------------------------------
 
