@@ -211,28 +211,4 @@ def exportGames():
 
 makeDb()
 
-
-#print(getAvg("ooga"))
-#print(getAvg("steve"))
-#print(addGame(["Italy","japan"],"ooga"))
-#print(getAvg("ooga"))
-#print(addGame(["usa","germany","russia"],"ooga"))
-#print(addGame(["Mexico","South Africa","India"],"ooga"))
-#print(getAvg("ooga"))
-
-
-#LEAVE THIS IN!!!!!!!!!!!!
-addUser("ooga","booga")
-addGame(["Italy","japan","japan","japan","japan"],"ooga")
-addUser("123","456")
-addGame(["Italy","japan","japan","japan","japan","USA","USA","USA","USA","USA","USA","USA"],"123")
-addUser("abc","def")
-addGame(["Italy","japan","japan","japan","japan","USA","USA","USA","USA","USA","USA","USA"],"abc")
-addUser("chopped","chin")
-addGame(["Italy","japan","japan","japan","japan","USA","USA","USA","USA","USA","USA","USA","France","France","France","France","France","France"],"chopped")
-addUser("test","case")
-addGame(["Italy","japan","japan","japan","japan","USA","USA","USA","USA","USA","USA","USA","Germany","Germany","Germany","Germany","Germany","Germany","Germany","Germany"],"test")
-addUser("Dweeb","Password")
-addGame(["Italy","japan","japan","japan","japan","USA","USA","USA","USA","Prussia","Prussia","Prussia","Prussia","Prussia","Prussia","Prussia","Germany","Prussia","Prussia","Prussia","Prussia","Prussia","Prussia","Prussia"],"Dweeb")
-
 db.close()
