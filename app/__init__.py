@@ -45,6 +45,19 @@ def login():
 
 #----------------------------------------------------------------------------------------------------------------
 
+# Reading csv file
+def listOfLocations():
+    with open('whc-sites-2023.csv') as file:
+        reader = csv.reader(file)
+        listOfData = []
+        for row in reader:
+            listOfData.append(row[14] + "," + row[15])
+    return listOfData
+
+print(listOfLocations())
+
+#----------------------------------------------------------------------------------------------------------------
+
 # Sign Up
 @app.route('/register', methods = ['GET', 'POST'])
 def register():
