@@ -20,16 +20,16 @@ app.secret_key = "secret hehe"
 # Landing Page
 @app.route('/', methods = ['GET', 'POST'])
 def landing():
-    return redirect(url_for('homepage'))
+    return redirect(url_for('home'))
 
 #----------------------------------------------------------------------------------------------------------------
 
 # Home Page
-@app.route('/homepage', methods = ['GET', 'POST'])
-def homepage():
+@app.route('/home', methods = ['GET', 'POST'])
+def home():
     if 'username' in session:
-        return render_template("homepage.html", logged_in = True, username = session['username'])
-    return render_template("homepage.html")
+        return render_template("home.html", logged_in = True, username = session['username'])
+    return render_template("home.html")
 
 #----------------------------------------------------------------------------------------------------------------
 
@@ -37,10 +37,10 @@ def homepage():
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
     if 'username' in session:
-        return redirect(url_for('homepage'))
+        return redirect(url_for('home'))
     if request.method == 'POST':
         #input checking for username
-        return redirect(url_for('homepage'))
+        return redirect(url_for('home'))
     return render_template("login.html")
 
 #----------------------------------------------------------------------------------------------------------------
@@ -56,7 +56,7 @@ def signup():
 @app.route('/logout', methods = ['GET', 'POST'])
 def logout():
     session.pop('username', None)
-    return redirect(url_for('homepage'))
+    return redirect(url_for('home'))
 
 #----------------------------------------------------------------------------------------------------------------
 

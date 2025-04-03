@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Home - itWorksOnMyMachine{% endblock %}
+{% block content %}
+<div class="mt-8">
+ 
+    <!-- google map -->
+     <div id="map" class="w-full h-96 rounded-lg shadow-lg mt-20"></div>
+
+     {% set ns = namespace(day_counter=1) %} <!-- namespace to hold counter -->
+
+  
+</div>
+
+<script>
+    function initMap() {
+        // create map of the world
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 2,
+            center: {lat: 20, lng: 0},
+            mapTypeId: 'terrain'
+        });
+    }
+</script>
+<!-- google maps JavaScript API -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap"></script>
+{% endblock %}
