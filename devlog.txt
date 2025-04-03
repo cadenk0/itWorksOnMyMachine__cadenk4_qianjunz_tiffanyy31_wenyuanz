@@ -1,3 +1,4 @@
 Tiffany (I'll fix format later)
 
 GOT NGINX WORKING ON CUSTOM DOMAIN TT
+Added map to homepage
