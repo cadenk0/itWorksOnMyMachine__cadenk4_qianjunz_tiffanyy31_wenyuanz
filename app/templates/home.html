@@ -1,26 +1,41 @@
 {% extends "base.html" %}
 {% block title %}Home - itWorksOnMyMachine{% endblock %}
 {% block content %}
-<div class="mt-8">
- 
-    <!-- google map -->
-     <div id="map" class="w-full h-96 rounded-lg shadow-lg mt-20"></div>
+<!DOCTYPE html>
+<html lang="en">
 
-     {% set ns = namespace(day_counter=1) %} <!-- namespace to hold counter -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog by Team Anything</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+</head>
 
-  
-</div>
+<body>
+    <header>
+        <h1>itWorksOnMyMachine</h1>
+    </header>
 
-<script>
-    function initMap() {
-        // create map of the world
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 2,
-            center: {lat: 20, lng: 0},
-            mapTypeId: 'terrain'
-        });
-    }
-</script>
-<!-- google maps JavaScript API -->
-<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap"></script>
+    <hr>
+    <br></br>
+    {% if username %}
+    <h2>Welcome back, {{ username }}!</h2>
+    {% else %}
+    <h2>Click here to Log in/Sign up!</h2>
+    <div class="bottom">
+        <form action="/login">
+            <button type="submit" class="button2">Log in</button>
+        </form>
+        <form action="/signup">
+            <button type="submit" class="button3">Sign Up</button>
+        </form>
+    </div>
+    {% endif %}
+
+
+    <br><br><br><br>
+    <hr>
+</body>
+
+</html>
 {% endblock %}

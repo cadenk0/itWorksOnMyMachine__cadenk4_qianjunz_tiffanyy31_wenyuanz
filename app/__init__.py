@@ -46,9 +46,9 @@ def login():
 #----------------------------------------------------------------------------------------------------------------
 
 # Sign Up
-@app.route('/signup', methods = ['GET', 'POST'])
-def signup():
-    return render_template("signup.html")
+@app.route('/register', methods = ['GET', 'POST'])
+def register():
+    return render_template("register.html")
 
 #----------------------------------------------------------------------------------------------------------------
 
