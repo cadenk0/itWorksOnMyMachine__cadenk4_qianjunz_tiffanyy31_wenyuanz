@@ -19,6 +19,14 @@
             center: {lat: 20, lng: 0},
             mapTypeId: 'terrain'
         });
+        for (loc in map){
+            var pos = loc.split(",")
+            var marker = new google.maps.Marker({
+                position: {lat: pos[0], lng: pos[1]},
+                map: map,
+                title: test
+            });
+        }
     }
 </script>
 <!-- google maps JavaScript API -->

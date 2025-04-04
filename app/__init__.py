@@ -55,7 +55,8 @@ def listOfLocations():
             listOfData.append(row[14] + "," + row[15])
     return listOfData
 
-print(listOfLocations())
+#print(listOfLocations())
+print(listOfLocations()[1:])
 
 #----------------------------------------------------------------------------------------------------------------
 
@@ -91,7 +92,8 @@ def search():
 # Map
 @app.route('/map', methods = ['GET', 'POST'])
 def map():
-    return render_template("map.html")
+    data = listOfLocations()[1:]
+    return render_template("map.html", map = data)
 
 #----------------------------------------------------------------------------------------------------------------
 
