@@ -26,8 +26,8 @@
                 <li><a href="{{ url_for('favorites') }}" class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition">Profile</a></li>
                 <li><a href="{{ url_for('logout') }}" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">Logout</a></li>
             {% else %}
-                <li><a href="{{ url_for('login') }}" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">Login</a></li>
-                <li><a href="{{ url_for('register') }}" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition">Sign Up</a></li>
+                <li><a href="{{ url_for('login') }}" class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition">Login</a></li>
+                <li><a href="{{ url_for('register') }}" class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition">Sign Up</a></li>
             {% endif %}
         </ul>
     </div>
