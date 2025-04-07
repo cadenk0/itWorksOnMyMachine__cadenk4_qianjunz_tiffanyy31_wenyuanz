@@ -82,10 +82,32 @@ def fav():
 
 #----------------------------------------------------------------------------------------------------------------
 
+def get_sites():
+    with open('whc-sites-2023.csv', 'r') as file:
+        reader = csv.reader(file)
+        header = next(reader) 
+        sites = []
+        for row in reader:
+            site = {
+                'name': row[1],    
+                'country': row[2],  
+                'latitude': row[14],
+                'longitude': row[15],
+            }
+            sites.append(site)
+        return sites
+
 # Search/Filter
-@app.route('/search', methods = ['GET', 'POST'])
+@app.route('/search', methods=['GET'])
 def search():
-    return render_template("search.html")
+    query = request.args.get('query', '').strip().lower()
+    sites = get_sites()
+    results = []
+    if query:
+        for site in sites:
+            if (query in site['name'].lower()) or (query in site['country'].lower()):
+                results.append(site)
+    return render_template("search.html", results=results, query=query)
 
 #----------------------------------------------------------------------------------------------------------------
 
