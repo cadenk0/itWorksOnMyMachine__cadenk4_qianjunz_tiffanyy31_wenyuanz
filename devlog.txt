@@ -1,4 +1,15 @@
-Tiffany (I'll fix format later)
+tiffanyY --2025-4-02 10:35
+- GOT NGINX WORKING ON CUSTOM DOMAIN TT
+- Added map to homepage
 
-GOT NGINX WORKING ON CUSTOM DOMAIN TT
-Added map to homepage
+tiffanyY --2025-4-03 10:36
+- Did some html for map + home
+
+tiffanyY --2025-4-03 10:58
+- Added nav bar
+
+tiffanyY --2025-4-07 9:19
+- Added CSS 
+
+tiffanyY --2025-4-07 10:45
+- Added base.html
