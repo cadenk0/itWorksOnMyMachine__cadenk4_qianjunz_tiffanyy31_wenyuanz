@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Population Density Map</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://d3js.org/topojson.v3.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #map-container {
+            text-align: center;
+        }
+        #title {
+            margin-bottom: 10px;
+        }
+        #map {
+            border: 1px solid #ccc;
+            margin: 0 auto;
+        }
+        #legend {
+            margin-top: 20px;
+        }
+        .legend-item {
+            display: inline-block;
+            margin-right: 15px;
+        }
+        .legend-color {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div id="map-container">
+        <h2 id="title">Word Heritage Sites Density (per country)</h2>
+        <svg id="map" width="960" height="500"></svg>
+        <div id="legend"></div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
