@@ -16,3 +16,6 @@ tiffanyY --2025-4-07 10:45
 
 tiffanyY -- 2025 -4-9 10:46
 - Added button to CSS
+
+cadenK -- 2025-4-09 11:00
+- Created basic d3 map visualization to later be edited
