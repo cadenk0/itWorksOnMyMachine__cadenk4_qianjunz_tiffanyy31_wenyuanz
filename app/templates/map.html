@@ -1,34 +1,24 @@
 {% extends "base.html" %}
 {% block title %}Home - itWorksOnMyMachine{% endblock %}
 {% block content %}
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+crossorigin=""/>
+
+
 <div class="mt-8">
- 
-    <!-- google map -->
-     <div id="map" class="w-full h-96 rounded-lg shadow-lg mt-20"></div>
-
-     {% set ns = namespace(day_counter=1) %} <!-- namespace to hold counter -->
-
-  
+    <div id="map"></div>
+</div>
 </div>
 
-<script>
-    function initMap() {
-        // create map of the world
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 2,
-            center: {lat: 20, lng: 0},
-            mapTypeId: 'terrain'
-        });
-        for (loc in map){
-            var pos = loc.split(",")
-            var marker = new google.maps.Marker({
-                position: {lat: pos[0], lng: pos[1]},
-                map: map,
-                title: test
-            });
-        }
-    }
+ <!-- Make sure you put this AFTER Leaflet's CSS -->
+ <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin="">
+    
+    // initialize the map on the "map" div with a given center and zoom
+
+
 </script>
-<!-- google maps JavaScript API -->
-<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap"></script>
-{% endblock %}
+{% endblock%}
