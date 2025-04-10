@@ -5,6 +5,7 @@
 # Caden Khuu (PM)
 Database SQL
 Python Backend
+D3
 
 # Tiffany Yang
 HTML
