@@ -19,3 +19,6 @@ tiffanyY -- 2025 -4-9 10:46
 
 cadenK -- 2025-4-09 11:00
 - Created basic d3 map visualization to later be edited
+
+tiffanyY -- 2025-4-10
+- Changed gmaps API to Leaflet API (https://leafletjs.com/)
