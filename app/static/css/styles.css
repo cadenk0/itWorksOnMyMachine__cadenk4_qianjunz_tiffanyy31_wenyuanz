@@ -15,7 +15,9 @@ header {
     text-transform: uppercase;
     letter-spacing: 2px;
 }
-
+header h7 {
+    font-size: 15px;
+}
 section {
     margin: 20px auto;
     padding: 20px;
@@ -87,4 +89,8 @@ button {
 button:hover {
     color: #004999;
     border-bottom: 1px solid #004999;
+}
+
+hr {
+    text-align: center;
 }
