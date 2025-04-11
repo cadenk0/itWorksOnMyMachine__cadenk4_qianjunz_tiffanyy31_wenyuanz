@@ -50,13 +50,27 @@ def login():
 def listOfLocations():
     with open('whc-sites-2023.csv') as file:
         reader = csv.reader(file)
-        listOfData = []
+        listOfData = {}
         for row in reader:
-            listOfData.append(row[14] + "," + row[15])
-    return listOfData
+            place = row[30].split(",")
+            #print(place)
+            for state in place:
+                aqui = False
+                for takenState in listOfData:
+                    if state == takenState:
+                        listOfData[state] = listOfData[state] + 1
+                        aqui = True
+                if not aqui:
+                    listOfData[state] = 1
+                    aqui = False
+        (k := next(iter(listOfData)), listOfData.pop(k))
+        returnable = "["
+        for i in listOfData:
+            returnable = returnable + '{ name: "' + i + '", score: ' + str(listOfData[i]) + " },"
+        return returnable + "];"
 
 #print(listOfLocations())
-print(listOfLocations()[1:])
+print(listOfLocations())
 
 #----------------------------------------------------------------------------------------------------------------
 
