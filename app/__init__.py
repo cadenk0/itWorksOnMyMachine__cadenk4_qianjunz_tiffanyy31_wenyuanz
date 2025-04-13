@@ -64,13 +64,30 @@ def listOfLocations():
                     listOfData[state] = 1
                     aqui = False
         (k := next(iter(listOfData)), listOfData.pop(k))
+        sorted_items = sorted(listOfData.items(), key=lambda item: item[1])
+        #print(sorted_items)
+        remove_item = remove_except_last_ten(sorted_items)
+        #print(remove_item)
+        print(remove_item)
         returnable = "["
-        for i in listOfData:
-            returnable = returnable + '{ name: "' + i + '", score: ' + str(listOfData[i]) + " },"
+        for i in remove_item:
+            returnable = returnable + '{ name: "' + i[0] + '", score: ' + str(i[1]) + " },"
         return returnable + "];"
+
+def remove_except_last_ten(input_dict):
+    while(len(input_dict) > 10):
+        del input_dict[0]
+    return input_dict
 
 #print(listOfLocations())
 print(listOfLocations())
+
+#----------------------------------------------------------------------------------------------------------------
+
+# d4density
+@app.route('/density', methods = ['GET', 'POST'])
+def density():
+    return render_template("d3density.html")
 
 #----------------------------------------------------------------------------------------------------------------
 
