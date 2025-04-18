@@ -90,10 +90,19 @@ def listOfLocations():
     with open('whc-sites-2023.csv', encoding="utf-8") as file:
         reader = csv.reader(file)
         listOfData = {}
+        first_row = next(reader)
         
+        print(first_row[15])
+            
+            
         for row in reader:
+            name = row[3]
+            description = row[5]
+            longitude = row[14]
+            latitude = row[15]
             place = row[30].split(",")
             for state in place:
+                build_db.add_landmark(name, state, description, latitude, longitude)
                 listOfData[state] = listOfData.get(state, 0) + 1
         (k := next(iter(listOfData)), listOfData.pop(k))
         sorted_items = sorted(listOfData.items(), key=lambda item: item[1])
@@ -104,13 +113,12 @@ def listOfLocations():
             returnable = returnable + '{ name: "' + i[0] + '", score: ' + str(i[1]) + " },"
         return returnable + "];"
 
+## idk if we should be removing stuff
+
 def remove_irrelevant(input_dict):
     while(len(input_dict) > 30):
         del input_dict[0]
     return input_dict
-
-#print(listOfLocations())
-print(listOfLocations())
 
 #----------------------------------------------------------------------------------------------------------------
 
@@ -171,7 +179,8 @@ def search():
 @app.route('/map', methods = ['GET', 'POST'])
 def map():
     data = listOfLocations()[1:]
-    return render_template("map.html", map = data)
+    landmarks = build_db.get_landmark()
+    return render_template("map.html", map = data, landmarks = landmarks)
 
 #----------------------------------------------------------------------------------------------------------------
 
