@@ -24,7 +24,7 @@
 
 <!-- Leaflet Initialization Script -->
 <script>
-  const map = L.map('map').setView([40.7128, -74.0060], 3); // NYC default
+  const map = L.map('map').setView([20, 0], 2); // NYC default
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution:
@@ -32,9 +32,12 @@
   }).addTo(map);
 
   // Example marker
-  L.marker([40.7128, -74.0060]).addTo(map)
-    .bindPopup('New York City')
-    .openPopup();
+  const landmarks = {{ landmarks|tojson }};
+  for (const landmark of landmarks) {
+    L.marker([landmark.latitude, landmark.longitude])
+      .addTo(map)
+      .bindPopup(`<b>${landmark.name}</b><br>${landmark.description}<br><i>${landmark.country}</i>`);
+  }
 </script>
 
 {% endblock %}
