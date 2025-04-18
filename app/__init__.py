@@ -90,31 +90,22 @@ def listOfLocations():
     with open('whc-sites-2023.csv', encoding="utf-8") as file:
         reader = csv.reader(file)
         listOfData = {}
+        
         for row in reader:
             place = row[30].split(",")
-            #print(place)
             for state in place:
-                aqui = False
-                for takenState in listOfData:
-                    if state == takenState:
-                        listOfData[state] = listOfData[state] + 1
-                        aqui = True
-                if not aqui:
-                    listOfData[state] = 1
-                    aqui = False
+                listOfData[state] = listOfData.get(state, 0) + 1
         (k := next(iter(listOfData)), listOfData.pop(k))
         sorted_items = sorted(listOfData.items(), key=lambda item: item[1])
-        #print(sorted_items)
-        remove_item = remove_except_last_ten(sorted_items)
+        remove_item = remove_irrelevant(sorted_items)
         #print(remove_item)
-        print(remove_item)
         returnable = "["
         for i in remove_item:
             returnable = returnable + '{ name: "' + i[0] + '", score: ' + str(i[1]) + " },"
         return returnable + "];"
 
-def remove_except_last_ten(input_dict):
-    while(len(input_dict) > 10):
+def remove_irrelevant(input_dict):
+    while(len(input_dict) > 30):
         del input_dict[0]
     return input_dict
 
