@@ -1,20 +1,33 @@
 #----------------------------------------------------------------------------------------------------------------
 
 from flask import Flask, flash, render_template, request, redirect, url_for, session, flash, jsonify
-import sqlite3
-import os
-import datetime
-import string
-import random
-import uuid
-import json
-import re
-import csv
+import sqlite3, os, datetime, string, random, uuid, json, re, csv
+
+
+import build_db
+build_db.makeDb()
 
 
 app = Flask(__name__)
 app.secret_key = "secret hehe"
 #app.secret_key = os.urandom(32)
+
+def signed_in():
+    return 'username' in session.keys() and session['username'] is not None
+
+def check_user(username):
+    user = build_db.get_user("username", username)
+    print(user)
+    if user is None:
+        return False
+    return user[0] == username
+
+def check_password(username, password):
+    user = build_db.get_user("username", username)
+    if user is None:
+        return False
+    return user[1] == password
+
 
 #----------------------------------------------------------------------------------------------------------------
 
@@ -40,15 +53,41 @@ def login():
     if 'username' in session:
         return redirect(url_for('home'))
     if request.method == 'POST':
-        #input checking for username
+        username = request.form.get('username')
+        password = request.form.get('password')
+        if not check_user(username):
+            flash("No such username exists")
+            return render_template("login.html")
+        if not check_password(username, password):
+            flash("Incorrect password")
+            return render_template("login.html")
+        session['username'] = username
         return redirect(url_for('home'))
     return render_template("login.html")
+
+
+# Sign Up
+@app.route('/register', methods = ['GET', 'POST'])
+def register():
+    if signed_in():
+        return redirect(url_for('home'))
+    elif request.method == "POST":
+        username = request.form['username']
+        password = request.form['password']
+        user = build_db.get_user("username", username)
+        if user is None:
+            build_db.add_account(username, password)
+            return redirect('/login')
+        else:
+            flash("Username already exists")
+            return render_template('register.html')
+    return render_template("register.html")
 
 #----------------------------------------------------------------------------------------------------------------
 
 # Reading csv file
 def listOfLocations():
-    with open('whc-sites-2023.csv') as file:
+    with open('whc-sites-2023.csv', encoding="utf-8") as file:
         reader = csv.reader(file)
         listOfData = {}
         for row in reader:
@@ -91,12 +130,7 @@ def density():
 
 #----------------------------------------------------------------------------------------------------------------
 
-# Sign Up
-@app.route('/register', methods = ['GET', 'POST'])
-def register():
-    return render_template("register.html")
 
-#----------------------------------------------------------------------------------------------------------------
 
 # Logout
 @app.route('/logout', methods = ['GET', 'POST'])
