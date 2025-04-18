@@ -8,13 +8,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>itWorksOnMyMachine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 </head>
 
-<body>
+<body class = "select-none">
     <header>
-        <h1>itWorksOnMyMachine (or does it?)</h1>
-        <h7>itAlsoLooksBetterOnMyMachine</h7>
+        <h1 class="select-none text-4xl">itWorksOnMyMachine (or does it?)</h1>
+        <p class="select-none text-sm text-4xl">itAlsoLooksBetterOnMyMachine</p>
     </header>
 
     <hr>
@@ -22,14 +23,26 @@
     {% if username %}
     <h2>Welcome back, {{ username }}!</h2>
     {% else %}
-    <h2>Click here to Log in/Sign up!</h2>
-    <div class="bottom">
+    <div class="flex justify-center items-center">
+    <section class="max-w-md w-full text-center bg-white shadow-md rounded-lg p-6">
+        <h2 class="mb-5 text-lg uppercase tracking-wide text-[#4b4945] font-mono font-semibold">
+        Welcome to<br>itWorksOnMyMachine!
+        </h2>
+
         <form action="/login">
-            <button type="submit" class="button2">Log in</button>
+        <button type="submit"
+            class="bg-[#4b4945] text-white mt-5 px-5 py-2 rounded cursor-pointer font-mono text-base hover:opacity-90">
+            Log In
+        </button>
         </form>
-        <form action="/signup">
-            <button type="submit" class="button3">Sign Up</button>
+
+        <form action="/signup" class="mt-4">
+        <button type="submit"
+            class="bg-[#e6e0d8] text-[#333] mt-3 border-2 border-[#4b4945] px-5 py-2 rounded cursor-pointer font-mono text-base hover:opacity-90">
+            Sign Up
+        </button>
         </form>
+    </section>
     </div>
     {% endif %}
 
