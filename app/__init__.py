@@ -178,9 +178,10 @@ def search():
 # Map
 @app.route('/map', methods = ['GET', 'POST'])
 def map():
-    data = listOfLocations()[1:]
     landmarks = build_db.get_landmark()
-    return render_template("map.html", map = data, landmarks = landmarks)
+    countries = sorted(set(l['country'] for l in landmarks if l['country']))
+    print(countries)
+    return render_template("map.html", countries = countries, landmarks = landmarks)
 
 #----------------------------------------------------------------------------------------------------------------
 

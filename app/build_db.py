@@ -81,6 +81,30 @@ def get_landmark():
         cur.close()
         db.close()
 
+def get_landmark_by_country(country):
+    try:
+        db = get_db()
+        cur = db.cursor()
+        cur.execute("SELECT name, country, description, latitude, longitude FROM landmarks WHERE LOWER(country) = LOWER(?)", (country,))
+        rows = cur.fetchall()
+        landmarks = [
+            {
+                "name": row[0],
+                "country": row[1],
+                "description": row[2],
+                "lat": row[3],
+                "lon": row[4]
+            }
+            for row in rows
+        ]
+        return landmarks
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+        return []
+    finally:
+        cur.close()
+        db.close()
+
 # Makes tables in the database (run this once, or after changes)
 def makeDb():
     db = get_db()
