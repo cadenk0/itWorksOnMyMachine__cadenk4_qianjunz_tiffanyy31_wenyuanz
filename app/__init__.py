@@ -122,7 +122,7 @@ def remove_irrelevant(input_dict):
 
 #----------------------------------------------------------------------------------------------------------------
 
-# d4density
+# d3density
 @app.route('/density', methods = ['GET', 'POST'])
 def density():
     return render_template("d3density.html")

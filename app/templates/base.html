@@ -20,9 +20,15 @@
             {% if session.get('username') %}
                 <li class="text-sm font-mono text-gray-700">Hi, {{ session['username'] }}!</li>
                 <li>
+                    <a href="{{ url_for('density') }}"
+                    class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
+                    D3 Density
+                    </a>
+                </li>
+                <li>
                     <a href="{{ url_for('logout') }}"
-                       class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
-                       Logout
+                    class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
+                    Logout
                     </a>
                 </li>
             {% else %}
