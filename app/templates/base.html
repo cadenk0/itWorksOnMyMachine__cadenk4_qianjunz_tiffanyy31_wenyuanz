@@ -11,43 +11,49 @@
 </head>
 <body class = "select-none">
    <!-- Navigation Bar -->
-   <nav class="navbar bg-white shadow">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <nav class="navbar bg-white shadow">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
         <a href="{{ url_for('home') }}" class="text-2xl font-bold">itWorksOnMyMachine</a>
         <ul class="flex space-x-6 items-center">
-            <li><a href="{{ url_for('map') }}" class="text-gray-600 hover:text-gray-800">Map</a></li>
-
             {% if session.get('username') %}
-                <li class="text-sm font-mono text-gray-700">Hi, {{ session['username'] }}!</li>
-                <li>
-                    <a href="{{ url_for('density') }}"
-                    class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
-                    D3 Density
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url_for('logout') }}"
-                    class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
-                    Logout
-                    </a>
-                </li>
+            <li class="text-sm font-mono text-gray-700">Hi, {{ session['username'] }}!</li>
+            <li>
+                <a href="{{ url_for('map') }}"
+                class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition">
+                Map
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('density') }}"
+                class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">
+                D3 Density
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('logout') }}"
+                class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
+                Logout
+                </a>
+            </li>
             {% else %}
-                <li>
-                    <a href="{{ url_for('login') }}"
-                       class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition">
-                       Login
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url_for('register') }}"
-                       class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition">
-                       Sign Up
-                    </a>
-                </li>
+            <li>
+                <a href="{{ url_for('login') }}"
+                class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition">
+                Login
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('register') }}"
+                class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition">
+                Sign Up
+                </a>
+            </li>
             {% endif %}
         </ul>
-    </div>
-</nav>
+        </div>
+    </nav>
+  
+  
 
     <!-- Main Content -->
     <div class="container mx-auto mt-6 px-4">
