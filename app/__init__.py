@@ -62,7 +62,7 @@ def login():
             flash("Incorrect password")
             return render_template("login.html")
         session['username'] = username
-        return redirect(url_for('home'))
+        return redirect(url_for('map'))
     return render_template("login.html")
 
 
