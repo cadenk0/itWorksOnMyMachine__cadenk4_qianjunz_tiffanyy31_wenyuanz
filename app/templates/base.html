@@ -12,10 +12,9 @@
 <body>
    <!-- Navigation Bar -->
    <nav class="navbar bg-white shadow">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
         <a href="{{ url_for('home') }}" class="text-2xl font-bold">itWorksOnMyMachine</a>
         <ul class="flex space-x-6 items-center">
-            <li><a href="{{ url_for('search') }}" class="text-gray-600 hover:text-gray-800">Search</a></li>
             <li><a href="{{ url_for('map') }}" class="text-gray-600 hover:text-gray-800">Map</a></li>
             
             {% if session.get('user_id') %}
@@ -26,8 +25,8 @@
                 <li><a href="{{ url_for('register') }}" class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition">Sign Up</a></li>
             {% endif %}
         </ul>
-    </div>
-</nav>
+        </div>
+    </nav>
 
     <!-- Main Content -->
     <div class="container mx-auto mt-6 px-4">
@@ -35,7 +34,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="footer bg-white shadow mt-8">
+    <footer class="footer bg-white shadow mt-8 select-none">
         <div class="container mx-auto px-4 py-6 text-center">
             &copy; itWorksOnMyMachine :3
         </div>

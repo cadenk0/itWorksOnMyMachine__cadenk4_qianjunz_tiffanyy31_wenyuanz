@@ -1,55 +1,43 @@
 {% extends "base.html" %}
 {% block title %}Home - itWorksOnMyMachine{% endblock %}
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>itWorksOnMyMachine</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
-</head>
+<div class="select-none">
 
-<body class = "select-none">
-    <header>
-        <h1 class="select-none text-4xl">itWorksOnMyMachine (or does it?)</h1>
-        <p class="select-none text-sm text-4xl">itAlsoLooksBetterOnMyMachine</p>
-    </header>
+  <header class="text-center mt-10">
+    <h1 class="text-4xl font-bold">itWorksOnMyMachine (or does it?)</h1>
+    <p class="text-sm text-gray-600 font-mono">itAlsoLooksBetterOnMyMachine</p>
+  </header>
 
-    <hr>
-    <br></br>
-    {% if username %}
-    <h2>Welcome back, {{ username }}!</h2>
-    {% else %}
-    <div class="flex justify-center items-center">
-    <section class="max-w-md w-full text-center bg-white shadow-md rounded-lg p-6">
+  <hr class="my-8">
+
+  {% if username %}
+    <h2 class="text-center text-xl mt-10">Welcome back, {{ username }}!</h2>
+  {% else %}
+    <div class="flex justify-center items-center mt-10">
+      <section class="max-w-md w-full text-center bg-white shadow-md rounded-lg p-6">
         <h2 class="mb-5 text-lg uppercase tracking-wide text-[#4b4945] font-mono font-semibold">
-        Welcome to<br>itWorksOnMyMachine!
+          Welcome to<br>itWorksOnMyMachine!
         </h2>
 
         <form action="/login">
-        <button type="submit"
+          <button type="submit"
             class="bg-[#4b4945] text-white mt-5 px-5 py-2 rounded cursor-pointer font-mono text-base hover:opacity-90">
             Log In
-        </button>
+          </button>
         </form>
 
         <form action="/signup" class="mt-4">
-        <button type="submit"
+          <button type="submit"
             class="bg-[#e6e0d8] text-[#333] mt-3 border-2 border-[#4b4945] px-5 py-2 rounded cursor-pointer font-mono text-base hover:opacity-90">
             Sign Up
-        </button>
+          </button>
         </form>
-    </section>
+      </section>
     </div>
-    {% endif %}
+  {% endif %}
 
+  <hr class="mt-20 mb-4">
 
-    <br><br><br><br>
-    <hr>
-</body>
-
-</html>
+</div>
 {% endblock %}
