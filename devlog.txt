@@ -44,3 +44,6 @@ tiffanyY -- 2025-4-21
 wenZ -- 2025-4-20 11:00
 - Fixed the D3 bar chart visualization and locations on map
 
+DESIGN REVISIONS THUS FAR:
+- Changed Map API
+====================================
