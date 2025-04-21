@@ -91,10 +91,7 @@ def listOfLocations():
         reader = csv.reader(file)
         listOfData = {}
         first_row = next(reader)
-        
-        print(first_row[15])
-            
-            
+
         for row in reader:
             name = row[3]
             description = row[5]
@@ -104,6 +101,9 @@ def listOfLocations():
             for state in place:
                 build_db.add_landmark(name, state, description, latitude, longitude)
                 listOfData[state] = listOfData.get(state, 0) + 1
+
+
+
         (k := next(iter(listOfData)), listOfData.pop(k))
         sorted_items = sorted(listOfData.items(), key=lambda item: item[1])
         remove_item = remove_irrelevant(sorted_items)
@@ -149,6 +149,7 @@ def fav():
 # Map
 @app.route('/map', methods = ['GET', 'POST'])
 def map():
+    listOfLocations()
     landmarks = build_db.get_landmark()
     countries = sorted(set(l['country'] for l in landmarks if l['country']))
     print(countries)
