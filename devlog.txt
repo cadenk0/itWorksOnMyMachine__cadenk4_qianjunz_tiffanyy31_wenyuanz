@@ -38,6 +38,9 @@ qianjunZ -- 2025-04-11 10:30
 qianjunZ -- 2025-04-13 15:30
 - added d3 to the website, no css yet
 
+tiffanyY -- 2025-4-21 
+- Updated design doc- API section
+
 wenZ -- 2025-4-20 11:00
 - Fixed the D3 bar chart visualization and locations on map
 
