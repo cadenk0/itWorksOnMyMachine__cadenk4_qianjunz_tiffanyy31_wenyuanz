@@ -40,6 +40,7 @@ qianjunZ -- 2025-04-13 15:30
 
 tiffanyY -- 2025-4-21 
 - Updated design doc- API section
+- Made site viewable w/p logins
 
 wenZ -- 2025-4-20 11:00
 - Fixed the D3 bar chart visualization and locations on map
