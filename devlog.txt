@@ -22,3 +22,7 @@ cadenK -- 2025-4-09 11:00
 
 tiffanyY -- 2025-4-10
 - Changed gmaps API to Leaflet API (https://leafletjs.com/)
+
+wenZ -- 2025-4-20 11:00
+- Fixed the D3 bar chart visualization and locations on map
+
