@@ -39,7 +39,7 @@ qianjunZ -- 2025-04-13 15:30
 - added d3 to the website, no css yet
 
 tiffanyY -- 2025-4-21 
-- Updated design doc- API section
+- Updated design doc- API section and pages
 - Made site viewable w/p logins
 
 wenZ -- 2025-4-20 11:00
@@ -51,4 +51,5 @@ cadenK -- 2025-4-21 11:00
 
 DESIGN REVISIONS THUS FAR:
 - Changed Map API
+- Merged maps, info pages, and filter
 ====================================
