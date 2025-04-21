@@ -55,7 +55,21 @@
     data.forEach(l => {
       const marker = L.marker([l.latitude, l.longitude])
         .addTo(map)
-        .bindPopup(`<b>${l.name}</b><br>${l.description}<br><i>${l.country}</i>`);
+        .bindPopup(`
+          <div>
+            <b>${l.name}</b>
+            <br>${l.description}<br>
+            <i>${l.country}</i>
+            <div class="flex justify-end">
+              <button
+                onclick="alert('Added to Favorites!')"
+                class="border border-red-500 text-red-500 px-3 py-1 rounded hover:bg-red-100 transition"
+              >
+                Favorite
+              </button>
+            </div>
+          </div>
+        `);
       markers.push(marker);
     });
   }

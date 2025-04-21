@@ -28,6 +28,25 @@ def check_password(username, password):
         return False
     return user[1] == password
 
+# Reading csv file
+def listOfLocations():
+    with open('whc-sites-2023.csv', encoding="utf-8") as file:
+        reader = csv.reader(file)
+        listOfData = {}
+        first_row = next(reader)
+
+        for row in reader:
+            name = row[3]
+            description = row[5]
+            longitude = row[14]
+            latitude = row[15]
+            place = row[30].split(",")
+            for state in place:
+                build_db.add_landmark(name, state, description, latitude, longitude)
+                listOfData[state] = listOfData.get(state, 0) + 1
+
+
+listOfLocations()
 
 #----------------------------------------------------------------------------------------------------------------
 
@@ -84,34 +103,6 @@ def register():
     return render_template("register.html")
 
 #----------------------------------------------------------------------------------------------------------------
-
-# Reading csv file
-def listOfLocations():
-    with open('whc-sites-2023.csv', encoding="utf-8") as file:
-        reader = csv.reader(file)
-        listOfData = {}
-        first_row = next(reader)
-
-        for row in reader:
-            name = row[3]
-            description = row[5]
-            longitude = row[14]
-            latitude = row[15]
-            place = row[30].split(",")
-            for state in place:
-                build_db.add_landmark(name, state, description, latitude, longitude)
-                listOfData[state] = listOfData.get(state, 0) + 1
-
-
-
-        (k := next(iter(listOfData)), listOfData.pop(k))
-        sorted_items = sorted(listOfData.items(), key=lambda item: item[1])
-        remove_item = remove_irrelevant(sorted_items)
-        #print(remove_item)
-        returnable = "["
-        for i in remove_item:
-            returnable = returnable + '{ name: "' + i[0] + '", score: ' + str(i[1]) + " },"
-        return returnable + "];"
 
 ## idk if we should be removing stuff
 
