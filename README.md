@@ -1,5 +1,9 @@
 # itWorksOnMyMachine__cadenk4_qianjunz_tiffanyy31_wenyuanz
 
+## Feature Spotlight
+
+Search feature to find different sites based on country
+Favorite sites
 
 
 # Caden Khuu (PM)
