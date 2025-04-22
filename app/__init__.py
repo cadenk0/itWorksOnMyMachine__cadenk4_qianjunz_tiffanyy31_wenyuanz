@@ -17,7 +17,6 @@ def signed_in():
 
 def check_user(username):
     user = build_db.get_user("username", username)
-    print(user)
     if user is None:
         return False
     return user[0] == username
@@ -45,8 +44,8 @@ def listOfLocations():
                 build_db.add_landmark(name, state, description, latitude, longitude)
                 listOfData[state] = listOfData.get(state, 0) + 1
 
-
-listOfLocations()
+if(build_db.is_empty()):
+    listOfLocations()
 
 #----------------------------------------------------------------------------------------------------------------
 
@@ -140,13 +139,30 @@ def fav():
 # Map
 @app.route('/map', methods = ['GET', 'POST'])
 def map():
-    listOfLocations()
     landmarks = build_db.get_landmark()
     countries = sorted(set(l['country'] for l in landmarks if l['country']))
-    print(countries)
-    return render_template("map.html", countries = countries, landmarks = landmarks)
+    favorites = build_db.get_user_favorites(session['username']) if signed_in() else set()
+
+    return render_template("map.html", countries = countries, landmarks = landmarks, favorites = favorites)
 
 #----------------------------------------------------------------------------------------------------------------
+
+
+# Button to add to favorites
+@app.route('/favorite', methods=['POST'])
+def favorite():
+    if not signed_in():
+        return redirect(url_for('login'))
+    build_db.add_favorite(session['username'], request.form['landmark_id'])
+    return redirect(url_for('map'))
+
+@app.route('/unfavorite', methods=['POST'])
+def unfavorite():
+    if not signed_in():
+        return redirect(url_for('login'))
+    build_db.remove_favorite(session['username'], request.form['landmark_id'])
+    return redirect(url_for('map'))
+
 
 if __name__ == "__main__":
     app.debug = True

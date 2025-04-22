@@ -61,15 +61,16 @@ def get_landmark():
     try:
         db = get_db()
         cur = db.cursor()
-        cur.execute("SELECT name, country, description, latitude, longitude FROM landmarks")
+        cur.execute("SELECT id, name, country, description, latitude, longitude FROM landmarks")
         rows = cur.fetchall()
         landmarks = [
             {
-                "name": row[0],
-                "country": row[1],
-                "description": row[2],
-                "latitude": row[3],
-                "longitude": row[4]
+                "id": row[0],
+                "name": row[1],
+                "country": row[2],
+                "description": row[3],
+                "latitude": row[4],
+                "longitude": row[5]
             }
             for row in rows
         ]
@@ -85,15 +86,16 @@ def get_landmark_by_country(country):
     try:
         db = get_db()
         cur = db.cursor()
-        cur.execute("SELECT name, country, description, latitude, longitude FROM landmarks WHERE LOWER(country) = LOWER(?)", (country,))
+        cur.execute("SELECT id, name, country, description, latitude, longitude FROM landmarks WHERE LOWER(country) = LOWER(?)", (country,))
         rows = cur.fetchall()
         landmarks = [
             {
-                "name": row[0],
-                "country": row[1],
-                "description": row[2],
-                "lat": row[3],
-                "lon": row[4]
+                "id": row[0],
+                "name": row[1],
+                "country": row[2],
+                "description": row[3],
+                "latitude": row[4],
+                "longitude": row[5]
             }
             for row in rows
         ]
@@ -105,12 +107,71 @@ def get_landmark_by_country(country):
         cur.close()
         db.close()
 
+def is_empty():
+    db = get_db()
+    cur = db.cursor()
+    cur.execute("SELECT COUNT(*) FROM landmarks")
+    count = cur.fetchone()[0]
+    cur.close()
+    db.close()
+    return count == 0
+
+def add_favorite(username, landmark_id):
+    db = get_db()
+    cur = db.cursor()
+    cur.execute("INSERT OR IGNORE INTO favorites (username, landmark_id) VALUES (?, ?)", (username, landmark_id))
+    db.commit()
+    cur.close()
+    db.close()
+
+def remove_favorite(username, landmark_id):
+    db = get_db()
+    cur = db.cursor()
+    cur.execute("DELETE FROM favorites WHERE username = ? AND landmark_id = ?", (username, landmark_id))
+    db.commit()
+    cur.close()
+    db.close()
+
+def get_user_favorites(username):
+    db = get_db()
+    cur = db.cursor()
+    cur.execute("SELECT landmark_id FROM favorites WHERE username = ?", (username,))
+    rows = cur.fetchall()
+    cur.close()
+    db.close()
+    return set(row[0] for row in rows)
+
+
+
 # Makes tables in the database (run this once, or after changes)
 def makeDb():
     db = get_db()
     c = db.cursor()
-    c.execute("CREATE TABLE IF NOT EXISTS users (username TEXT NOT NULL UNIQUE, password TEXT NOT NULL)")
-    c.execute("CREATE TABLE IF NOT EXISTS landmarks (name TEXT NOT NULL, country TEXT NOT NULL, description TEXT NOT NULL, latitude REAL NOT NULL, longitude REAL NOT NULL)")
+    c.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+            username TEXT NOT NULL UNIQUE,
+            password TEXT NOT NULL
+        );
+    """)
+
+    c.execute("""
+        CREATE TABLE IF NOT EXISTS landmarks (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            country TEXT NOT NULL,
+            description TEXT NOT NULL,
+            latitude REAL NOT NULL,
+            longitude REAL NOT NULL
+        );
+    """)
+
+    c.execute("""
+        CREATE TABLE IF NOT EXISTS favorites (
+            username TEXT NOT NULL,
+            landmark_id INTEGER NOT NULL,
+            PRIMARY KEY (username, landmark_id)
+        );
+    """)
     db.commit()
     db.close()
 
